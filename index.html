@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jesus Emmanuel Llamas — Full-Stack Developer, Front-End Developer & UI/UX Designer specializing in React, Laravel, Flutter and modern technologies." />
+  <title>Jesus Emmanuel Llamas | Full-Stack Developer & UI/UX Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+  <!-- Favicon — matches nav-logo-mark -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="alternate icon" href="./favicon.svg" />
+
+  <link rel="stylesheet" href="./style.css" class="css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <!-- Noise / scanline overlay inside loader -->
+    <div class="pre-scanlines"></div>
+
+    <!-- Corner accents -->
+    <div class="pre-corner pre-corner--tl"></div>
+    <div class="pre-corner pre-corner--tr"></div>
+    <div class="pre-corner pre-corner--bl"></div>
+    <div class="pre-corner pre-corner--br"></div>
+
+    <!-- Central content -->
+    <div class="pre-center">
+      <!-- Logo letters split for individual animation -->
+      <div class="pre-logo-wrap" id="pre-logo-wrap">
+        <span class="pre-letter" id="pl-j">J</span>
+        <span class="pre-letter" id="pl-e">E</span>
+        <span class="pre-letter" id="pl-l">L</span>
+      </div>
+
+      <!-- Glitch version (hidden, shown during glitch) -->
+      <div class="pre-glitch" id="pre-glitch" aria-hidden="true">JEL</div>
+
+      <!-- Percentage counter -->
+      <div class="pre-percent" id="pre-percent">0%</div>
+    </div>
+
+    <!-- Bottom status line -->
+    <div class="pre-status">
+      <span class="pre-status-dot"></span>
+      <span class="pre-status-txt" id="pre-status-txt">Initializing...</span>
+    </div>
+
+    <!-- Horizontal progress bar -->
+    <div class="pre-bar-wrap">
+      <div class="pre-bar"><div class="pre-fill" id="pre-fill"></div></div>
+    </div>
+
+    <!-- Exit curtains -->
+    <div class="pre-curtain pre-curtain--top" id="pre-curtain-top"></div>
+    <div class="pre-curtain pre-curtain--bot" id="pre-curtain-bot"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo-wrap">
+        <div class="nav-logo-mark">JL</div>
+        <div class="nav-logo-name"><em>Emmanuel</em></div>
+      </a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home"     data-s="home"     class="active">Home</a></li>
+        <li><a href="#about"    data-s="about">About</a></li>
+        <li><a href="#skills"   data-s="skills">Skills</a></li>
+        <li><a href="#projects" data-s="projects">Projects</a></li>
+        <li><a href="#contact"  data-s="contact" class="nav-cta-pill">Contact</a></li>
+      </ul>
+      <div class="nav-burger" id="nav-burger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================================================
+       HERO
+  ====================================================== -->
+  <section id="home">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg-vignette"></div>
+    <div class="hero-dots"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container" style="position:relative;z-index:2;">
+      <div class="hero-layout">
+
+        <!-- LEFT: Text -->
+        <div class="hero-text">
+          <div class="hero-avail" id="hero-avail" style="opacity:0;transform:translateY(20px)">
+            <div class="avail-pip"></div>
+            Open to work · Freelance &amp; Full-time
+          </div>
+          <h1 class="hero-name" id="hero-name" style="opacity:0;transform:translateY(30px)">
+            <span class="name-prefix">Hello, I'm</span>
+            <span class="grad-text">Jesus Emmanuel</span><br>
+            Llamas
+          </h1>
+          <p class="hero-role-line" id="hero-role" style="opacity:0;transform:translateY(20px)">
+            <span class="typed-wrap"><span id="typed"></span><span class="caret"></span></span>
+          </p>
+          <p class="hero-desc" id="hero-desc" style="opacity:0;transform:translateY(20px)">
+            Crafting high-performance web and mobile applications with modern technologies.
+            From pixel-perfect interfaces to scalable back-end architectures.
+          </p>
+          <div class="hero-btns" id="hero-btns" style="opacity:0;transform:translateY(20px)">
+            <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> View My Work</a>
+            <a href="#contact"  class="btn btn-ghost"><i class="fa-regular fa-paper-plane"></i> Hire Me</a>
+          </div>
+          <div class="hero-tech-pills" id="hero-pills">
+            <div class="tech-pill" style="opacity:0;transform:translateY(16px) scale(0.85)"><i class="devicon-react-original colored"></i>React.js</div>
+            <div class="tech-pill" style="opacity:0;transform:translateY(16px) scale(0.85)"><i class="devicon-laravel-plain colored"></i>Laravel</div>
+            <div class="tech-pill" style="opacity:0;transform:translateY(16px) scale(0.85)"><i class="devicon-flutter-plain colored"></i>Flutter</div>
+            <div class="tech-pill" style="opacity:0;transform:translateY(16px) scale(0.85)"><i class="devicon-typescript-plain colored"></i>TypeScript</div>
+            <div class="tech-pill" style="opacity:0;transform:translateY(16px) scale(0.85)"><i class="devicon-nodejs-plain colored"></i>Node.js</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: 3D Scene -->
+        <div class="hero-scene">
+          <div class="scene-container">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+
+            <!-- Floating icons -->
+            <div class="fi"><i class="devicon-react-original colored"></i></div>
+            <div class="fi"><i class="devicon-html5-plain colored"></i></div>
+            <div class="fi"><i class="devicon-laravel-plain colored"></i></div>
+            <div class="fi"><i class="devicon-typescript-plain colored"></i></div>
+            <div class="fi"><i class="devicon-mongodb-plain colored"></i></div>
+            <div class="fi"><i class="devicon-flutter-plain colored"></i></div>
+
+            <!-- Cube -->
+            <div class="cube-stage">
+              <div class="cube">
+                <div class="face ft"><i class="devicon-react-original colored"></i></div>
+                <div class="face bk"><i class="devicon-laravel-plain colored"></i></div>
+                <div class="face lt"><i class="devicon-flutter-plain colored"></i></div>
+                <div class="face rt"><i class="devicon-nodejs-plain colored"></i></div>
+                <div class="face tp"><i class="devicon-typescript-plain colored"></i></div>
+                <div class="face bt"><i class="devicon-python-plain colored"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <div class="scroll-wire"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ======================================================
+       ABOUT
+  ====================================================== -->
+  <section id="about" class="section-pad">
+    <div class="container">
+      <div class="about-layout">
+
+        <!-- Image -->
+        <div class="about-img-col reveal-l">
+          <div class="about-img-frame">
+            <img src="PMN.PSU-UR.DAY 1-035.jpg" alt="Jesus Emmanuel Llamas — Full-Stack Developer" />
+          </div>
+          <div class="about-img-decor decor-a">
+            <div class="decor-num grad-text">10+</div>
+            <div class="decor-lbl">Technologies</div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="about-info reveal-r">
+          <div>
+            <div class="section-eyebrow">About Me</div>
+            <h2 class="section-h">Crafting Digital<br><span class="grad-text">Experiences</span></h2>
+          </div>
+
+          <p class="about-bio">
+            I'm <strong>Jesus Emmanuel Llamas</strong>, a Full-Stack Developer and UI/UX Designer
+            with a <strong>Bachelor of Science in Information Technology</strong> specializing in
+            <strong>Web and Mobile Technologies</strong>. I thrive at the intersection of clean code
+            and beautiful design — building solutions that are as robust under the hood as they are
+            stunning on screen.
+          </p>
+
+          <div>
+            <div class="hero-badge" id="hero-badge" style="opacity:0;transform:translateY(20px)">
+            <i class="fa-solid fa-graduation-cap"></i>
+            BSIT Major in Web &amp; Mobile Technologies
+            </div>
+            <div class="hero-badge" id="hero-badge" style="opacity:0;transform:translateY(20px);margin-top: 10px">
+              <i class="fa-solid fa-school"></i>
+              Pangasinan State University - Urdaneta City Campus
+            </div>
+          </div>
+
+          <div class="about-chips">
+            <div class="chip"><i class="fa-solid fa-paintbrush"></i> UI/UX Design</div>
+            <div class="chip"><i class="fa-solid fa-code"></i> Full-Stack Dev</div>
+            <div class="chip"><i class="fa-solid fa-mobile-screen"></i> Mobile Apps</div>
+            <div class="chip"><i class="fa-solid fa-database"></i> Database Design</div>
+            <div class="chip"><i class="fa-solid fa-plug"></i> REST APIs</div>
+          </div>
+
+          <div class="about-meta">
+            <div class="meta-item">
+              <span class="meta-key">Degree</span>
+              <span class="meta-val">BSIT · Web &amp; Mobile</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Specialization</span>
+              <span class="meta-val">Full-Stack Development</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Primary Stack</span>
+              <span class="meta-val">React.js &amp; Laravel</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Mobile</span>
+              <span class="meta-val">Flutter &amp; React Native</span>
+            </div>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-cell">
+              <div class="stat-n" data-target="10">0</div>
+              <div class="stat-l">Technologies</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-n">6</div>
+              <div class="stat-l">Projects Built</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-n" data-target="3">0</div>
+              <div class="stat-l">Years Building</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Hire Me</a>
+            <a href="./Llamas_JesusEmmanuel_Resume.pdf" class="btn btn-ghost" download="Llamas_JesusEmmanuel_Resume.pdf"><i class="fa-solid fa-download"></i> Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SKILLS
+  ====================================================== -->
+  <section id="skills" class="section-pad">
+    <div class="container">
+
+      <div class="skills-head reveal">
+        <div class="section-eyebrow">Tech Stack</div>
+        <h2 class="section-h">Skills &amp; <span class="grad-text">Technologies</span></h2>
+        <p class="skills-sub" style="margin-top:14px;">
+          A curated toolkit built through years of hands-on development across web, back-end,
+          database, and mobile platforms.
+        </p>
+      </div>
+
+      <div class="skill-groups">
+
+        <!-- FRONTEND -->
+        <div class="skill-group reveal">
+          <div class="group-head"><i class="fa-solid fa-display"></i> Front-End Web</div>
+          <div class="skills-row">
+            <div class="sk-card" data-w="92"><div class="sk-icon"><i class="devicon-react-original colored"></i></div><div class="sk-label">React.js</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="88"><div class="sk-icon"><i class="devicon-typescript-plain colored"></i></div><div class="sk-label">TypeScript</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="95"><div class="sk-icon"><i class="devicon-html5-plain colored"></i></div><div class="sk-label">HTML5</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="90"><div class="sk-icon"><i class="devicon-css3-plain colored"></i></div><div class="sk-label">CSS3</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="90"><div class="sk-icon"><i class="devicon-javascript-plain colored"></i></div><div class="sk-label">JavaScript</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+          </div>
+        </div>
+
+        <!-- BACKEND -->
+        <div class="skill-group reveal">
+          <div class="group-head"><i class="fa-solid fa-server"></i> Back-End WEB</div>
+          <div class="skills-row">
+            <div class="sk-card" data-w="88"><div class="sk-icon"><i class="devicon-laravel-plain colored"></i></div><div class="sk-label">Laravel</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="82"><div class="sk-icon"><i class="devicon-nodejs-plain colored"></i></div><div class="sk-label">Node.js</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="74"><div class="sk-icon"><i class="devicon-django-plain colored"></i></div><div class="sk-label">Django</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="85"><div class="sk-icon"><i class="devicon-php-plain colored"></i></div><div class="sk-label">PHP</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="76"><div class="sk-icon"><i class="devicon-python-plain colored"></i></div><div class="sk-label">Python</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+          </div>
+        </div>
+
+        <!-- DATABASES -->
+        <div class="skill-group reveal">
+          <div class="group-head"><i class="fa-solid fa-database"></i> Databases</div>
+          <div class="skills-row">
+            <div class="sk-card" data-w="90"><div class="sk-icon"><i class="devicon-mysql-plain colored"></i></div><div class="sk-label">MySQL</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="83"><div class="sk-icon"><i class="devicon-firebase-plain colored"></i></div><div class="sk-label">Firebase</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="80"><div class="sk-icon" style="color:#3ecf8e;font-size:2.4rem;"><i class="fa-solid fa-database"></i></div><div class="sk-label">Supabase</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="78"><div class="sk-icon"><i class="devicon-mongodb-plain colored"></i></div><div class="sk-label">MongoDB</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+          </div>
+        </div>
+
+        <!-- MOBILE -->
+        <div class="skill-group reveal">
+          <div class="group-head"><i class="fa-solid fa-mobile-screen"></i> Mobile Development</div>
+          <div class="skills-row">
+            <div class="sk-card" data-w="86"><div class="sk-icon"><i class="devicon-flutter-plain colored"></i></div><div class="sk-label">Flutter</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="80"><div class="sk-icon"><i class="devicon-react-original colored"></i></div><div class="sk-label">React Native</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+            <div class="sk-card" data-w="83"><div class="sk-icon"><i class="devicon-dart-plain colored"></i></div><div class="sk-label">Dart</div><div class="sk-bar"><div class="sk-fill"></div></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       PROJECTS
+  ====================================================== -->
+  <section id="projects" class="section-pad">
+    <div class="container">
+      <div class="proj-head">
+        <div>
+          <div class="section-eyebrow">Portfolio</div>
+          <h2 class="section-h">Featured <span class="grad-text">Projects</span></h2>
+        </div>
+        <div class="proj-filters">
+          <button class="filt on" data-f="all">All</button>
+          <button class="filt" data-f="web">Web</button>
+          <button class="filt" data-f="mobile">Mobile</button>
+          <button class="filt" data-f="fullstack">Full-Stack</button>
+        </div>
+      </div>
+
+      <div class="proj-grid" id="proj-grid">
+
+        <!-- Sign-to-Text Mobile App -->
+        <div class="proj-card reveal" data-c="mobile">
+          <div class="proj-thumb proj-thumb--img">
+            <img src="sign_to_text.png" alt="Sign-to-Text Mobile App" class="proj-screenshot" />
+            <div class="proj-thumb-overlay"></div>
+            <span class="proj-badge proj-badge--type"><i class="fa-solid fa-mobile-screen-button"></i> Mobile App</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Sign-to-Text Translator</h3>
+            <p class="proj-desc">A real-time sign language recognition mobile app that translates hand gestures into readable text using machine learning, helping bridge communication for the deaf and hard-of-hearing community.</p>
+            <div class="proj-tags">
+              <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Python</span><span class="tag">Firebase</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Website -->
+        <div class="proj-card reveal d1" data-c="fullstack">
+          <div class="proj-thumb proj-thumb--img">
+            <img src="blog_website.png" alt="Blog Website" class="proj-screenshot" />
+            <div class="proj-thumb-overlay"></div>
+            <span class="proj-badge proj-badge--type"><i class="fa-solid fa-globe"></i> Website</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Blog Platform</h3>
+            <p class="proj-desc">A fully-featured blogging platform with rich-text editing, category management, comment threads, user authentication, and an intuitive admin panel for managing posts and authors.</p>
+            <div class="proj-tags">
+              <span class="tag">React.js</span><span class="tag">Laravel</span><span class="tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Transfer Credentials System -->
+        <div class="proj-card reveal d2" data-c="fullstack">
+          <div class="proj-thumb proj-thumb--img">
+            <img src="student_transfer_credentials_system_for_pangasinan_state_university_urdaneta_city_campus.png" alt="Student Transfer Credentials System" class="proj-screenshot" />
+            <div class="proj-thumb-overlay"></div>
+            <span class="proj-badge proj-badge--type"><i class="fa-solid fa-server"></i> Web System</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Student Transfer Credentials System</h3>
+            <p class="proj-desc">A web-based credential management system for Pangasinan State University – Urdaneta City Campus that streamlines student transfer requests, document submission, and approval workflows.</p>
+            <div class="proj-tags">
+              <span class="tag">React.js</span><span class="tag">Laravel</span><span class="tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resume Website -->
+        <div class="proj-card reveal d3" data-c="web">
+          <div class="proj-thumb proj-thumb--img">
+            <img src="resume.png" alt="Resume Website" class="proj-screenshot" />
+            <div class="proj-thumb-overlay"></div>
+            <span class="proj-badge proj-badge--type"><i class="fa-solid fa-globe"></i> Website</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Resume/Cover Letter Tailor</h3>
+            <p class="proj-desc">A web app where a user pastes in a job description and their existing resume (or fills a profile once), and the AI rewrites their resume bullets and generates a matching cover letter tailored to that specific job — matching keywords, tone, and emphasis to what the posting is asking for.</p>
+            <div class="proj-tags">
+              <span class="tag">React.js</span><span class="tag">Vite</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Procurement System -->
+        <div class="proj-card reveal d4" data-c="fullstack">
+          <div class="proj-thumb proj-thumb--img">
+            <img src="procurement.png" alt="Procurement System" class="proj-screenshot" />
+            <div class="proj-thumb-overlay"></div>
+            <span class="proj-badge proj-badge--type"><i class="fa-solid fa-globe"></i> Website</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Procurement Management System</h3>
+            <p class="proj-desc">An end-to-end procurement platform with vendor management, purchase order workflows, budget tracking, approval hierarchies, and real-time inventory monitoring for efficient supply chain operations.</p>
+            <div class="proj-tags">
+              <span class="tag">React.js</span><span class="tag">Laravel</span><span class="tag">Supabase</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Super Admin Dashboard -->
+        <div class="proj-card reveal d5" data-c="fullstack">
+          <div class="proj-thumb proj-thumb--img">
+            <img src="super-admin-dashboard2.png" alt="Super Admin Dashboard" class="proj-screenshot" />
+            <div class="proj-thumb-overlay"></div>
+            <span class="proj-badge proj-badge--type"><i class="fa-solid fa-globe"></i> Website</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Daily Accomplishment System</h3>
+            <p class="proj-desc">A comprehensive multi-role administration dashboard with user management, analytics overview, system configuration, activity logs, and role-based access control across multiple system modules.</p>
+            <div class="proj-tags">
+              <span class="tag">React.js</span><span class="tag">Laravel</span><span class="tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       CONTACT
+  ====================================================== -->
+  <section id="contact" class="section-pad">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left -->
+        <div class="contact-left reveal-l">
+          <div>
+            <div class="section-eyebrow">Get In Touch</div>
+            <h2 class="section-h">Let's Build<br><span class="grad-text">Something Great</span></h2>
+            <p style="font-size:1rem;color:var(--txt-1);line-height:1.85;margin-top:16px;max-width:440px;">
+              Have a project in mind, want to collaborate, or just say hi?
+              I'm currently open to freelance and full-time opportunities. Let's talk.
+            </p>
+          </div>
+          <div class="contact-items">
+            <div class="c-item">
+              <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="c-text">
+                <strong>Email</strong>
+                <span>emmanllamas052@email.com</span>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="c-text">
+                <strong>Location</strong>
+                <span>Philippines · Open to Remote Work</span>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <div class="c-text">
+                <strong>Availability</strong>
+                <span>Open Now · Freelance &amp; Full-Time</span>
+              </div>
+            </div>
+          </div>
+          <div class="socials">
+            <a href="#" class="soc" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="soc" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="soc" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="soc" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="soc" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal-r">
+          <form class="contact-form" id="contact-form" onsubmit="submitForm(event)">
+            <div class="form-row">
+              <div class="fg">
+                <label for="f-name">Your Name</label>
+                <input type="text" id="f-name" class="fi-inp" placeholder="Juan dela Cruz" required />
+              </div>
+              <div class="fg">
+                <label for="f-email">Email Address</label>
+                <input type="email" id="f-email" class="fi-inp" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div class="fg">
+              <label for="f-subject">Subject</label>
+              <input type="text" id="f-subject" class="fi-inp" placeholder="Project inquiry, Collaboration..." required />
+            </div>
+            <div class="fg">
+              <label for="f-msg">Message</label>
+              <textarea id="f-msg" class="fi-ta" placeholder="Tell me about your project or idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="send-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="foot-inner">
+        <p class="foot-copy">© 2026 <span>Jesus Emmanuel Llamas</span>. All rights reserved.</p>
+        <div class="foot-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+          <i class="fa-solid fa-arrow-up"></i> Back to top
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+  /* ============================================================
+     PRELOADER — AnimeJS powered
+  ============================================================ */
+  (function initPreloader() {
+    const preloader   = document.getElementById('preloader');
+    const percentEl   = document.getElementById('pre-percent');
+    const statusEl    = document.getElementById('pre-status-txt');
+    const fillBar     = document.getElementById('pre-fill');
+    const curtainTop  = document.getElementById('pre-curtain-top');
+    const curtainBot  = document.getElementById('pre-curtain-bot');
+    const DASH        = 339.3; // kept for reference
+
+    const statusMessages = [
+      'Initializing environment...',
+      'Loading assets...',
+      'Compiling components...',
+      'Rendering interface...',
+      'Almost there...'
+    ];
+
+    let currentStatus = 0;
+
+    /* --- Letter entrance --- */
+    anime({
+      targets: '.pre-letter',
+      opacity: [0, 1],
+      translateY: ['-60px', '0px'],
+      scale: [0.4, 1],
+      rotateX: ['-90deg', '0deg'],
+      delay: anime.stagger(120, { start: 100 }),
+      duration: 900,
+      easing: 'spring(1, 80, 12, 0)'
+    });
+
+    /* --- Corner accents entrance --- */
+    anime({
+      targets: '.pre-corner',
+      opacity: [0, 1],
+      scale: [0, 1],
+      delay: anime.stagger(80, { start: 400 }),
+      duration: 500,
+      easing: 'easeOutExpo'
+    });
+
+    /* --- Progress counter animation: 0 → 100 over ~2.2s --- */
+    const progressObj = { value: 0 };
+    anime({
+      targets: progressObj,
+      value: 100,
+      duration: 2200,
+      easing: 'easeInOutQuart',
+      update: function() {
+        const v = Math.round(progressObj.value);
+        // Update percentage text
+        percentEl.textContent = v + '%';
+        // Update flat progress bar
+        fillBar.style.width = v + '%';
+        // Cycle status messages
+        const mIdx = Math.floor(v / 20);
+        if (mIdx !== currentStatus && mIdx < statusMessages.length) {
+          currentStatus = mIdx;
+          anime({
+            targets: statusEl,
+            opacity: [1, 0, 1],
+            duration: 300,
+            easing: 'linear',
+            update: function(a) {
+              if (a.progress > 40 && a.progress < 60) {
+                statusEl.textContent = statusMessages[currentStatus];
+              }
+            }
+          });
+        }
+      },
+      complete: function() {
+        percentEl.textContent = '100%';
+        fillBar.style.width = '100%';
+        statusEl.textContent = 'Ready!';
+
+        /* --- Glitch burst on completion --- */
+        const glitch = document.getElementById('pre-glitch');
+        glitch.style.opacity = '1';
+        anime({
+          targets: glitch,
+          translateX: [
+            { value: -6, duration: 60 },
+            { value: 8,  duration: 60 },
+            { value: -4, duration: 60 },
+            { value: 0,  duration: 60 }
+          ],
+          opacity: [
+            { value: 1, duration: 60 },
+            { value: 0.3, duration: 60 },
+            { value: 1, duration: 60 },
+            { value: 0, duration: 200 }
+          ],
+          easing: 'linear',
+          complete: function() {
+            glitch.style.opacity = '0';
+          }
+        });
+
+        /* --- Logo letters spin out --- */
+        anime({
+          targets: '.pre-letter',
+          scale: [1, 1.4, 0],
+          opacity: [1, 1, 0],
+          rotateZ: anime.stagger([-20, 20]),
+          delay: anime.stagger(60, { start: 300 }),
+          duration: 600,
+          easing: 'easeInBack'
+        });
+
+        /* --- Counter / status fade out --- */
+        anime({
+          targets: '.pre-percent, .pre-status, .pre-bar-wrap',
+          opacity: [1, 0],
+          translateY: [0, 10],
+          delay: anime.stagger(50, { start: 400 }),
+          duration: 400,
+          easing: 'easeInQuad'
+        });
+
+        /* --- Curtain split exit --- */
+        setTimeout(function() {
+          curtainTop.style.display = 'block';
+          curtainBot.style.display = 'block';
+          anime({
+            targets: curtainTop,
+            translateY: [0, '-100%'],
+            duration: 700,
+            delay: 200,
+            easing: 'easeInOutExpo'
+          });
+          anime({
+            targets: curtainBot,
+            translateY: [0, '100%'],
+            duration: 700,
+            delay: 200,
+            easing: 'easeInOutExpo',
+            complete: function() {
+              preloader.classList.add('hidden');
+              // Trigger hero entrance animations after preloader hides
+              runHeroEntrance();
+            }
+          });
+        }, 700);
+      }
+    });
+  })();
+
+  /* ============================================================
+     HERO ENTRANCE — AnimeJS powered
+  ============================================================ */
+  function runHeroEntrance() {
+    const timeline = anime.timeline({
+      easing: 'easeOutExpo'
+    });
+
+    timeline
+      .add({
+        targets: '#hero-avail',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 700
+      })
+      .add({
+        targets: '#hero-badge',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 700
+      }, '-=400')
+      .add({
+        targets: '#hero-name',
+        opacity: [0, 1],
+        translateY: [40, 0],
+        duration: 900,
+        easing: 'spring(1, 70, 10, 0)'
+      }, '-=300')
+      .add({
+        targets: '#hero-role',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 600
+      }, '-=300')
+      .add({
+        targets: '#hero-desc',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 600
+      }, '-=400')
+      .add({
+        targets: '#hero-btns',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 600
+      }, '-=350')
+      .add({
+        targets: '#hero-pills .tech-pill',
+        opacity: [0, 1],
+        translateY: [16, 0],
+        scale: [0.85, 1],
+        delay: anime.stagger(80),
+        duration: 500
+      }, '-=200');
+  }
+
+  /* ---- CUSTOM CURSOR ---- */
+  const dot  = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animCursor(){
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    dot.style.left  = mx + 'px';
+    dot.style.top   = my + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+
+  document.querySelectorAll('a,button,.filt,.sk-card,.proj-card,.soc,.chip,.about-tag,.foot-top')
+    .forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+  /* ---- PARTICLES ---- */
+  const canvas = document.getElementById('particle-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resizeCanvas(){
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  class Particle {
+    constructor(){
+      this.reset();
+    }
+    reset(){
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.r  = Math.random() * 1.2 + 0.3;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.a  = Math.random() * 0.5 + 0.1;
+      this.da = (Math.random() - 0.5) * 0.004;
+    }
+    update(){
+      this.x += this.vx;
+      this.y += this.vy;
+      this.a += this.da;
+      if(this.a <= 0 || this.a >= 0.7){ this.da *= -1; }
+      if(this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,200,200,${this.a})`;
+      ctx.fill();
+    }
+  }
+
+  for(let i = 0; i < 90; i++) particles.push(new Particle());
+
+  function drawLines(){
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i+1; j < particles.length; j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 120){
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(200,200,200,${(1 - dist/120) * 0.06})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animParticles(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawLines();
+    requestAnimationFrame(animParticles);
+  }
+  animParticles();
+
+  /* ---- TYPING EFFECT ---- */
+  const roles = ['Full-Stack Developer','Front-End Developer','UI/UX Designer','React.js Specialist','Mobile App Developer'];
+  let ri = 0, ci = 0, del = false;
+  const typedEl = document.getElementById('typed');
+
+  function type(){
+    const txt = roles[ri];
+    if(del){
+      typedEl.textContent = txt.slice(0, ci-1);
+      ci--;
+    } else {
+      typedEl.textContent = txt.slice(0, ci+1);
+      ci++;
+    }
+    let speed = del ? 48 : 78;
+    if(!del && ci === txt.length){ speed = 1900; del = true; }
+    else if(del && ci === 0){ del = false; ri = (ri+1)%roles.length; speed = 320; }
+    setTimeout(type, speed);
+  }
+  type();
+
+  /* ---- NAVBAR SCROLL ---- */
+  const navbar = document.getElementById('navbar');
+  const navAs  = document.querySelectorAll('.nav-menu a[data-s]');
+  const sects  = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    let cur = '';
+    sects.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navAs.forEach(a => { a.classList.toggle('active', a.dataset.s === cur); });
+  });
+
+  /* ---- SMOOTH SCROLL ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+
+  /* ---- REVEAL on SCROLL ---- */
+  const revEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('revealed'); });
+  }, { threshold:0.1, rootMargin:'0px 0px -60px 0px' });
+  revEls.forEach(el => revObs.observe(el));
+
+  /* ---- SKILL BARS ---- */
+  const skCards = document.querySelectorAll('.sk-card');
+  const skObs   = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        const fill = en.target.querySelector('.sk-fill');
+        const w    = en.target.dataset.w;
+        fill.style.width = w + '%';
+        en.target.classList.add('sk-anim');
+      }
+    });
+  }, { threshold:0.3 });
+  skCards.forEach(c => skObs.observe(c));
+
+  /* ---- COUNTERS ---- */
+  document.querySelectorAll('[data-target]').forEach(el => {
+    new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if(en.isIntersecting){
+          const tgt = +en.target.dataset.target;
+          let n = 0; const step = tgt / 55;
+          const go = () => { n += step; if(n < tgt){ el.textContent = Math.floor(n)+'+'; requestAnimationFrame(go); } else el.textContent = tgt+'+'; };
+          go();
+          en.currentTarget.unobserve(en.target);
+        }
+      });
+    },{ threshold:.5 }).observe(el);
+  });
+
+  /* ---- PROJECT FILTERS ---- */
+  document.querySelectorAll('.filt').forEach(btn => {
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filt').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      const f = btn.dataset.f;
+      document.querySelectorAll('.proj-card').forEach(c => {
+        const show = f === 'all' || c.dataset.c === f;
+        c.style.transition = 'opacity .3s, transform .3s';
+        if(show){ c.style.display=''; setTimeout(()=>c.style.opacity='1',10); }
+        else { c.style.opacity='0'; setTimeout(()=>c.style.display='none',310); }
+      });
+    });
+  });
+
+  /* ---- 3D CARD TILT ---- */
+  document.querySelectorAll('.proj-card,.sk-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 16;
+      const y = ((e.clientY - r.top ) / r.height - 0.5) * -12;
+      card.style.transform = `perspective(900px) rotateX(${y}deg) rotateY(${x}deg) translateY(-10px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform .5s cubic-bezier(0.4,0,0.2,1)';
+    });
+    card.addEventListener('mouseenter', () => card.style.transition = 'none');
+  });
+
+  /* ---- FORM SUBMIT ---- */
+  function submitForm(e){
+    e.preventDefault();
+    const btn = document.getElementById('send-btn');
+    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message Sent!';
+    btn.style.background = 'linear-gradient(135deg,#4ade80,#22c55e)';
+    setTimeout(()=>{
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+      btn.style.background = '';
+      document.getElementById('contact-form').reset();
+    }, 3200);
+  }
+  </script>
+</body>
+</html>
